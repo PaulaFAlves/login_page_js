@@ -1,14 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
 }
 html, body {
 	height: 100vh,
 }
 body {
-	background-color: #7159c1;
-	font-family: Roboto, Arial, sans-serif;
+	background-color: #fff;
 }
 section {
 	display: flex;
@@ -19,12 +20,11 @@ section {
 h1 {
 	font-size: 32px;
 	letter-spacing: 1px;
-	margin: 20px 0;
-	color: #fff;
+	margin: 100px 0 10px 0;
+	color: #828282;
 }
 form {
 	margin: 20px 0;
-	background-color: #fff;
 	padding: 30px 25px;
 	border-radius: 5px;
 }
@@ -33,7 +33,7 @@ form .input-block {
 }
 form .input-block label {
 	font-size: 14px;
-	color: darkslateblue;
+	color: #363636;
 }
 form .input-block input {
 	width: 100%;
@@ -41,21 +41,116 @@ form .input-block input {
 	margin-top: 8px;
 	padding: 7px;
 	font-size: 16px;
-	color: #7159c1;
+	color: #363636;
 	border-radius: 2px;
-	border: 1px solid #ccdef;
-	outline-color: #7159c1;
+	border: 1px solid #363636;
+	outline-color: #828282;
 }
 form .btn-login {
 	display: block;
 	min-width: 120px;
 	border: none;
-	background-color: #7159c1;
+	background-color: #828282;
 	color: #fff;
 	border-radius: 25px;
 	margin: auto;
 	padding: 7px;
+	outline: none;
 }
+
+
+
+/* os campos do form aparecem pelo lado */
+form {
+	overflow: hidden; /* esconde a sobreposicao de elementos */
+	animation: fade 0.2s;
+}
+form .input-block:nth-child(1) {
+	animation: move 0.7s;
+}
+form .input-block:nth-child(2) {
+	animation: move 0.7s;
+	animation-delay: 0.2s;
+	animation-fill-mode: backwards;
+}
+form .btn-login {
+	animation: move 0.7s;
+	animation-delay: 0.5s;
+	animation-fill-mode: backwards;
+}
+
+@keyframes move {
+	from {
+		opacity: 0; /* o form desaparece e aparece no opacity 1*/
+		transform: translateX(-35%); /* o elemento surge da esquerda para a direita até a posiçao certa, ou seja, 0 */
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+@keyframes fade {
+	from {
+		opacity: 0;  
+		transform: scale(0.9);  
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+/* sumir com o form quando clicar no botao */
+.form-hide {
+	animation: down 0.5s;
+	animation-fill-mode: forwards; /* form keeps its last position*/
+	animation-timing-function: ease-in;
+}
+@keyframes down {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(100vh);
+	}
+}
+.title-hide {
+	animation: up 0.5s;
+	animation-fill-mode: forwards; /* form keeps its last position*/
+	animation-timing-function: ease-in;
+}
+@keyframes up {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(-100vh);
+	}
+}
+
+
+/* form no-no */
+form.validate-error {
+	animation: nono 200ms linear, fade paused;
+	animation-iteration-count: 2;
+}
+
+@keyframes nono {  /* form vibrates when empty */
+	0%{ 
+		transform: translateX(0);
+	}
+	35%{
+		transform: translateX(-8%);
+	}
+	70%{
+		transform: translateX(8%);
+	}
+	100%{
+		transform: translateX(0);
+	}
+}
+
+
 
 
 
